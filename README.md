@@ -1,4 +1,4 @@
-#github_api 
+##github_api 
 
 This project was created in order to allow for a user to access a list of a user's public GitHub repos, in this case the user is Faraday. We did it by using GitHub's API.
 
