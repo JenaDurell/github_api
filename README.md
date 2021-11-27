@@ -1,6 +1,16 @@
-# Getting Started with Create React App
+#github_api 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created in order to allow for a user to access a list of a user's public GitHub repos, in this case the user is Faraday. We did it by using GitHub's API.
+
+github_api uses axios to call GitHub's API, then maps over the response and dispalys each repo in a tiled display using Masonry. Each Masonry tile displays selected information from the API response, including the language it was written in as well as a link to the repo itself.
+
+
+github_api was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+[axios] (https://www.npmjs.com/package/axios)
+
+[react-masonry-css] (https://www.npmjs.com/package/react-masonry-css)
+
 
 ## Available Scripts
 
@@ -45,26 +55,3 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
