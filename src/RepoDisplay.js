@@ -1,31 +1,17 @@
-import React, { useState, useEffect } from 'react';
-import './App.css'
-import axios from 'axios'
-import Masonry from 'react-masonry-css'
+import React from 'react';
+import './App.css';
 
+//this component takes in the variables that are displayed in each individual tile. Not all repos have languages listed in the return, so there is a ternary in place to take care of these cases
 const RepoDisplay = ({name, fullName, description, language, link}) => {
-    const breakpoints = {
-        default: 3,
-        1100: 2,
-        700: 1,
-      };
 
       return(
-        <div>
-        <Masonry
-        breakpointCols={breakpoints}
-        className="my-masonry-grid"
-        columnClassName="my-masonry-grid_column"
-      >
-          <h5>Name: {name}</h5>
-          <h5>Full Name: {fullName}</h5>
-        <h5>Description: {description}</h5>
-       {language ? ( <h5>Language: {language}</h5> ) : ('')}
-       <a href={link}>Link</a> 
-
-      </Masonry>
-
-          </div>
+        <>
+        <div className='title'>{name}</div>
+        <div className='full-name'>Full Name: {fullName}</div>
+        {language ? ( <div className='language'> {language}</div> ) : ('')}
+        <div className='desc'>Description: {description}</div>
+        <a href={link}>See For Yourself ↗️ </a> 
+        </>
       )
 }
 export default RepoDisplay
