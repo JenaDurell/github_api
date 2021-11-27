@@ -7,9 +7,9 @@ github_api uses axios to call GitHub's API, then maps over the response and disp
 
 github_api was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-Link to [axios](https://www.npmjs.com/package/axios) npm page here.
+Link to [axios](https://www.npmjs.com/package/axios) npm page.
 
-Link to [react-masonry-css](https://www.npmjs.com/package/react-masonry-css) npm page here.
+Link to [react-masonry-css](https://www.npmjs.com/package/react-masonry-css) npm page.
 
 
 ## Available Scripts
