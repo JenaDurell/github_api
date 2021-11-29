@@ -7,7 +7,7 @@ import Masonry from 'react-masonry-css';
 
 //TODO paginate
 //TODO sort results
-const url = 'https://api.github.com/users/faradayio/repos?per_page=100&page=1'
+const url = 'https://api.github.com/users/faradayio/repos?per_page=100&page='
 
 function App() {
 
@@ -28,9 +28,26 @@ function App() {
 
   //axios returns transformed data so we don't have to parse JSON response
   const getGitRepoInfo = async () => {
-    const response = await axios.get(url)
-    console.log('hello', response.data)
-    setAllRepoInfo(response.data.sort((a, b) => a.name.localeCompare(b.name)))
+
+
+    let page =1
+              let resultCount = 0
+    let allResponses = []
+    while(page===1 || resultCount === 100){
+     let response=await(
+      axios.get(url + page)
+
+      )
+      console.log('response', response)
+      resultCount=response.data.length
+      console.log('pgct', resultCount)
+      page++
+     allResponses= allResponses.concat(response.data)
+    
+    }
+    console.log(allResponses, 'hello')
+    let sortedRepos = (allResponses.sort((a, b) => a.name.localeCompare(b.name)))
+    setAllRepoInfo(sortedRepos)
   };
 
   //once we get response info we stop displaying loading
