@@ -5,8 +5,6 @@ import RepoDisplay from './RepoDisplay';
 import Masonry from 'react-masonry-css';
 
 
-//TODO paginate
-//TODO sort results
 const url = 'https://api.github.com/users/faradayio/repos?per_page=100&page='
 
 function App() {
@@ -14,6 +12,8 @@ function App() {
   //set initial states
   const [allRepoInfo, setAllRepoInfo] = useState([])
   const [isLoading, setIsLoading] = useState(true);
+  const [displayedRepoInfo, setDisplayedRepoInfo] = useState([])
+
   //multiple breakpoints for responsiveness
   const breakpoints = {
     default: 3,
@@ -21,7 +21,25 @@ function App() {
     700: 1,
   };
 
-  //when page loads make api call once
+  //onClick handler to allow user to sort by language
+ const languageSelectClickHandler = (e, codeType) => { 
+   if (codeType==='All'){
+     setDisplayedRepoInfo(allRepoInfo)
+   }
+   else{
+     let filteredList =[]
+     allRepoInfo.forEach((repo) => {
+       if(repo.language === codeType) {
+         filteredList.push(repo)
+       }
+       
+      })
+      console.log('filet', filteredList)
+      setDisplayedRepoInfo(filteredList)
+   }
+  console.log('help', codeType)}
+
+  //when page loads make api call 
   useEffect(() => {
     getGitRepoInfo();
   }, [])
@@ -42,7 +60,9 @@ function App() {
     }
     //puts responses in alphabetical order so user can easily search for title
     let sortedRepos = (allResponses.sort((a, b) => a.name.localeCompare(b.name)))
+   
     setAllRepoInfo(sortedRepos)
+   setDisplayedRepoInfo(sortedRepos)
   };
 
   //once we get response info we stop displaying loading
@@ -52,12 +72,23 @@ function App() {
     }
   }, [allRepoInfo]);
 
+
+
   return (
     <div className="App">
       <header className="App-header">
        <h1>faraday_public_access 👩🏽‍💻</h1>
+       <div className="language-choices">
+  <button className="menu">filter by language</button>
+  <div className="menu-content">
+    <button onClick={(e)=>languageSelectClickHandler(e,'All')}>all</button>
+    <button onClick={(e)=>languageSelectClickHandler(e,'JavaScript')}>JavaScript</button>
+    <button onClick={(e)=>languageSelectClickHandler(e,'Python')}>Python</button>
+    <button onClick={(e)=>languageSelectClickHandler(e,'Ruby')}>Ruby</button>
+   
+  </div>
+</div>
       </header>
-      
       {/* Mansonry component allows for each repo to be displayed in its own tile once api response is mapped over */} .
       <Masonry
         breakpointCols={breakpoints}
@@ -66,8 +97,8 @@ function App() {
         >
         {isLoading ? (
           <h1 className='loading'>Results are on the way...</h1>
-        ) : (
-        allRepoInfo.map((repo) => (
+        ) :  ( 
+        displayedRepoInfo.map((repo) => (
           <div key = {repo.id}>
             <RepoDisplay
             name={repo.name}
@@ -77,6 +108,7 @@ function App() {
             link={repo.html_url} />
           </div>
         ))
+        
         )}
         </Masonry>
         
