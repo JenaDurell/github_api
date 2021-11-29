@@ -26,11 +26,7 @@
   text-align: center;
 }
 
-.title{
-  font-weight: bold;
-  font-size: 2rem;
-  text-shadow: 1px 0 10px #ffffff,1px 0 10px #ffffff; 
-}
+
 
 
 /* menu styling*/
@@ -79,6 +75,11 @@
 
 
 /*RepoDisplay styling */
+.title{
+  font-weight: bold;
+  font-size: 2rem;
+  text-shadow: 1px 0 10px #ffffff,1px 0 10px #ffffff; 
+}
 a{
   text-decoration: none;
   color: #939597;

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './App.css'
-import axios from 'axios'
+import './App.css';
+import axios from 'axios';
 import RepoDisplay from './RepoDisplay';
 import Masonry from 'react-masonry-css';
 
@@ -10,9 +10,9 @@ const url = 'https://api.github.com/users/faradayio/repos?per_page=100&page='
 function App() {
 
   //set initial states
-  const [allRepoInfo, setAllRepoInfo] = useState([])
+  const [allRepoInfo, setAllRepoInfo] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [displayedRepoInfo, setDisplayedRepoInfo] = useState([])
+  const [displayedRepoInfo, setDisplayedRepoInfo] = useState([]);
 
   //multiple breakpoints for responsiveness
   const breakpoints = {
@@ -32,12 +32,10 @@ function App() {
        if(repo.language === codeType) {
          filteredList.push(repo)
        }
-       
       })
-      console.log('filet', filteredList)
       setDisplayedRepoInfo(filteredList)
    }
-  console.log('help', codeType)}
+  }
 
   //when page loads make api call 
   useEffect(() => {
@@ -62,7 +60,7 @@ function App() {
     let sortedRepos = (allResponses.sort((a, b) => a.name.localeCompare(b.name)))
    
     setAllRepoInfo(sortedRepos)
-   setDisplayedRepoInfo(sortedRepos)
+    setDisplayedRepoInfo(sortedRepos)
   };
 
   //once we get response info we stop displaying loading
@@ -78,18 +76,21 @@ function App() {
     <div className="App">
       <header className="App-header">
        <h1>faraday_public_access 👩🏽‍💻</h1>
+
+       {/*Dropdown menu allows user to filter by language */}
        <div className="language-choices">
-  <button className="menu">filter by language</button>
-  <div className="menu-content">
-    <button onClick={(e)=>languageSelectClickHandler(e,'All')}>all</button>
-    <button onClick={(e)=>languageSelectClickHandler(e,'JavaScript')}>JavaScript</button>
-    <button onClick={(e)=>languageSelectClickHandler(e,'Python')}>Python</button>
-    <button onClick={(e)=>languageSelectClickHandler(e,'Ruby')}>Ruby</button>
-   
-  </div>
-</div>
-      </header>
-      {/* Mansonry component allows for each repo to be displayed in its own tile once api response is mapped over */} .
+        <button className="menu">filter by language</button>
+        <div className="menu-content">
+         <button onClick={(e)=>languageSelectClickHandler(e,'All')}>all</button>
+         <button onClick={(e)=>languageSelectClickHandler(e,'JavaScript')}>JavaScript</button>
+         <button onClick={(e)=>languageSelectClickHandler(e,'Python')}>Python</button>
+         <button onClick={(e)=>languageSelectClickHandler(e,'Ruby')}>Ruby</button>
+       </div>
+      </div>
+
+     </header>
+
+      {/* Mansonry component allows for each repo to be displayed in its own tile once api response is mapped over */} 
       <Masonry
         breakpointCols={breakpoints}
         className="my-masonry-grid"
