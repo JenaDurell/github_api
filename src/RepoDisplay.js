@@ -7,9 +7,9 @@ const RepoDisplay = ({name, fullName, description, language, link}) => {
       return(
         <>
         <div className='title'>{name}</div>
-        <div className='full-name'>Full Name: {fullName}</div>
+        <div className='full-name'>{fullName}</div>
         {language ? ( <div className='language'> {language}</div> ) : ('')}
-        <div className='desc'>Description: {description}</div>
+        <div className='desc'>{description}</div>
         <a href={link}>See For Yourself ↗️ </a> 
         </>
       )

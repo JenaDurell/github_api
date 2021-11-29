@@ -28,24 +28,19 @@ function App() {
 
   //axios returns transformed data so we don't have to parse JSON response
   const getGitRepoInfo = async () => {
-
-
+    //gets as many pages of public repos as are available using while loop, the max you can get from one call is 100, so this loops through until it gets a result of less than 100
     let page =1
-              let resultCount = 0
+    let resultCount = 0
     let allResponses = []
     while(page===1 || resultCount === 100){
      let response=await(
       axios.get(url + page)
-
       )
-      console.log('response', response)
       resultCount=response.data.length
-      console.log('pgct', resultCount)
       page++
      allResponses= allResponses.concat(response.data)
-    
     }
-    console.log(allResponses, 'hello')
+    //puts responses in alphabetical order so user can easily search for title
     let sortedRepos = (allResponses.sort((a, b) => a.name.localeCompare(b.name)))
     setAllRepoInfo(sortedRepos)
   };
@@ -62,6 +57,7 @@ function App() {
       <header className="App-header">
        <h1>faraday_public_access 👩🏽‍💻</h1>
       </header>
+      
       {/* Mansonry component allows for each repo to be displayed in its own tile once api response is mapped over */} .
       <Masonry
         breakpointCols={breakpoints}
@@ -83,7 +79,6 @@ function App() {
         ))
         )}
         </Masonry>
-      
         
     </div>
   );
